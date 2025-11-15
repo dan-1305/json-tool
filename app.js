@@ -81,7 +81,7 @@ function toggleTheme() {
     if (document.body.classList.contains('dark-mode')) {
         themeToggle.textContent = '🌙';
         editorInput.setTheme("ace/theme/monokai");
-        editorOutput.setTheme("ace/keybinding/monokai");
+        editorOutput.setTheme("ace/theme/monokai");
     } else {
         themeToggle.textContent = '☀️';
         editorInput.setTheme("ace/theme/chrome");
