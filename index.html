@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>JSON Formatter & Converter</h1>
+        <button id="themeToggle">☀️</button>
+    </div>
+
+    <div class="container">
+            <div class="pane">
+            <h2>JSON Input</h2>
+        
+            <div class="file-controls">
+                <label for="fileInput" class="file-btn">📤 Chọn file (.json)</label>
+                <input type="file" id="fileInput" style="display: none;" accept=".json, application/json">
+        
+                <span class="drop-text">hoặc kéo/thả file vào đây...</span>
+            </div>
+        
+            <div id="jsonInputEditor" class="drop-zone"></div>
+        </div>
+        <div class="pane">
+            <h2>Output</h2>
+        
+            <p id="excelWarning" style="display: none;">
+                <i>Lưu ý: Nếu mở file .CSV bằng Excel bị lỗi font, hãy thử mở bằng VSCode hoặc Google Sheets.</i>
+            </p>
+        
+            <div id="jsonOutputEditor"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="formatBtn">► Làm Đẹp (Format)</button>
+        <button id="convertBtn">► Chuyển sang CSV</button>
+        <button id="copyBtn">[ Copy Kết Quả ]</button>
+        <button id="clearBtn">[ Xóa ]</button>
+    
+        <button id="downloadJsonBtn" class="download-btn">💾 Tải về .JSON</button>
+        <button id="downloadCsvBtn" class="download-btn" style="display: none;">💾 Tải về .CSV</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.33.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.33.0/mode-json.js"></script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

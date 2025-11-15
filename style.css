@@ -1,0 +1,250 @@
+/* --- 1. BIẾN MÀU (CSS VARIABLES) --- */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --pane-bg: #ffffff;
+    --border-color: #ccc;
+    --header-color: #444;
+}
+
+/* Class ".dark-mode" sẽ "đè" các biến này lên */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --pane-bg: #2a2a2a;
+    --border-color: #555;
+    --header-color: #e0e0e0;
+}
+
+/* --- 2. Tổng thể --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- 3. Tiêu đề & Nút "Đèn" --- */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+h1,
+h2 {
+    color: var(--header-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#themeToggle {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* --- 4. Bố cục 2 Cột --- */
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 75vh;
+}
+
+.pane {
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 5. Các nút "Tối ưu" --- */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+#formatBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#formatBtn:hover {
+    background-color: #0056b3;
+}
+
+#convertBtn {
+    background-color: #fd7e14;
+    color: white;
+}
+
+#convertBtn:hover {
+    background-color: #c7640f;
+}
+
+#copyBtn,
+#clearBtn {
+    background-color: #6c757d;
+    color: white;
+    font-size: 12px;
+    padding: 8px 10px;
+}
+
+#copyBtn:hover,
+#clearBtn:hover {
+    background-color: #5a6268;
+}
+
+/* --- 6. Ô "Ưa nhìn" (ĐÂY LÀ CODE ĐÚNG) --- */
+/* (Code 'textarea' cũ đã bị XÓA) */
+#jsonInputEditor,
+#jsonOutputEditor {
+    width: 100%;
+    flex-grow: 1;
+    /* <-- DÒNG "THẦN KỲ" ĐÂY */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+/* --- 7. SỬA CHO ĐIỆN THOẠI (Media Query) --- */
+/* (Block 6 phải nằm TRƯỚC block 7) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .pane {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* (SỬA) Giờ chúng ta chỉnh chiều cao 2 editor cho di động */
+    #jsonInputEditor,
+    #jsonOutputEditor {
+        height: 40vh;
+        flex-grow: 0;
+        /* Tắt 'flex-grow' trên di động */
+    }
+
+    .controls {
+        flex-wrap: wrap;
+    }
+        /* --- Style cho nút Download (MỚI) --- */
+    .download-btn {
+            background-color: #28a745;
+            /* Màu xanh lá cây */
+            color: white;
+            font-size: 12px;
+            padding: 8px 10px;
+        }
+    
+    .download-btn:hover {
+            background-color: #218838;
+        }
+        /* --- 8. Style cho khu vực tải file (MỚI) --- */
+.file-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa nút và chữ */
+    margin-bottom: 5px;
+}
+
+.file-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+.file-btn:hover {
+    background-color: #0056b3;
+}
+
+.drop-text {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Hiệu ứng "viền đứt" khi kéo file vào */
+.drag-over {
+    /* Dùng !important để "đè" lên style cũ */
+    border-style: dashed !important;
+    border-color: #007bff !important;
+    background-color: var(--pane-bg-hover, #f0f8ff) !important;
+}
+
+/* Thêm biến màu hover cho Dark Mode */
+body.dark-mode {
+     --pane-bg-hover: #3a3a4a;
+}
+/* --- 8. Style cho khu vực tải file (MỚI) --- */
+.file-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Khoảng cách giữa nút và chữ */
+    margin-bottom: 5px;
+}
+
+.file-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.file-btn:hover {
+    background-color: #0056b3;
+}
+
+.drop-text {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Hiệu ứng "viền đứt" khi kéo file vào */
+.drag-over {
+    /* Dùng !important để "đè" lên style cũ */
+    border-style: dashed !important;
+    border-color: #007bff !important;
+    background-color: var(--pane-bg-hover, #f0f8ff) !important;
+}
+
+/* Thêm biến màu hover cho Dark Mode */
+body.dark-mode {
+    --pane-bg-hover: #3a3a4a;
+}
+}
