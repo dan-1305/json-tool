@@ -147,25 +147,23 @@ convertBtn.addEventListener('click', convertToCSV);
 
 // (GẮN NÚT MỚI)
 // (GẮN NÚT JSON - Giữ nguyên)
+// (GẮN NÚT JSON - Giữ nguyên)
 downloadJsonBtn.addEventListener('click', () => {
     const content = editorOutput.getValue();
     if(content.startsWith("LỖI:")) return; 
     downloadFile('formatted.json', content, 'application/json');
 });
 
-// (THAY THẾ KHỐI NÀY - BỘ NÃO CSV DOWNLOAD THÔNG MINH)
+// (THAY THẾ KHỐI NÀY - BỘ NÃO CSV DOWNLOAD "SẠCH")
 downloadCsvBtn.addEventListener('click', () => {
     // 1. Lấy CSV "sạch" từ ô Output
     const cleanCsvContent = editorOutput.getValue();
     if(cleanCsvContent.startsWith("LỖI:")) return;
 
-    // 2. Thêm "Bí kíp Excel" (BOM + sep=,) VÀO ĐÂY
-    const excelHackPrefix = '\uFEFF' + 'sep=,\n';
-    const fileContent = excelHackPrefix + cleanCsvContent;
+    // 2. (ĐÃ XÓA "BÍ KÍP HACK")
 
-    // 3. Gọi hàm Tải về với nội dung ĐÃ "hack"
-    // (Thêm charset=utf-8 vào mimeType để "ép" Excel lần nữa)
-    downloadFile('converted.csv', fileContent, 'text/csv;charset=utf-8-sig,');
+    // 3. Gọi hàm Tải về với nội dung "SẠCH"
+    downloadFile('converted.csv', cleanCsvContent, 'text/csv;charset=utf-8,');
 });
 // --- 10. BỘ NÃO "ĐỌC FILE" (MỚI) ---
 // (Hàm này sẽ được cả "Nút chọn" và "Kéo thả" sử dụng)
