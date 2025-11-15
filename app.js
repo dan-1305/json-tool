@@ -160,8 +160,6 @@ downloadCsvBtn.addEventListener('click', () => {
     const cleanCsvContent = editorOutput.getValue();
     if(cleanCsvContent.startsWith("LỖI:")) return;
 
-    // 2. (ĐÃ XÓA "BÍ KÍP HACK")
-
     // 3. Gọi hàm Tải về với nội dung "SẠCH"
     downloadFile('converted.csv', cleanCsvContent, 'text/csv;charset=utf-8,');
 });
