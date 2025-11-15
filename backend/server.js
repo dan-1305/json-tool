@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const { Parser } = require('json2csv');
-const path = require('path'); // <-- "Công nhân" mới, chuyên xử lý đường dẫn
 
 const app = express();
 const port = 3000;
@@ -9,8 +8,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-// --- 1. DẠY BACKEND PHỤC VỤ API ---
-// (API vẫn giữ nguyên)
+// CHỈ LO API
 app.post('/api/convert', (req, res) => {
     try {
         const jsonData = req.body;
@@ -24,20 +22,8 @@ app.post('/api/convert', (req, res) => {
     }
 });
 
-// --- 2. DẠY BACKEND PHỤC VỤ "CỬA HÀNG" (MỚI) ---
-// "path.join" sẽ tìm đường dẫn đến thư mục cha (thư mục gốc)
-const frontendPath = path.join(__dirname, '..'); 
+// KHÔNG PHỤC VỤ index.html NỮA
 
-// "express.static" ra lệnh: "Phục vụ mọi file tĩnh (css, js) trong thư mục đó"
-app.use(express.static(frontendPath));
-
-// "Catch-all" (Bắt tất cả): Nếu không phải API,
-// hãy gửi "cửa hàng" (index.html) cho người dùng.
-app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-});
-
-// --- 3. Khởi động "Nhà máy" ---
 app.listen(port, () => {
-    console.log(`Backend "Nhà máy" đang chạy tại http://localhost:${port}`);
+    console.log(`Backend "Nhà máy CSV" đang chạy tại http://localhost:${port}`);
 });

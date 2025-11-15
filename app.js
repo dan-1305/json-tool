@@ -118,7 +118,7 @@ async function convertToCSV() {
         }
         const jsonData = JSON.parse(jsonText);
 
-        const response = await fetch('/api/convert', {
+        const response = await fetch('https://json-tool-beta.vercel.app/api/convert', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(jsonData),
