@@ -12,7 +12,6 @@
       "dest": "/backend/server.js"
     },
 
-    // --- PHẦN SỬA LỖI (CHỈ ĐƯỜNG RÕ RÀNG) ---
     {
       "src": "/style.css",
       "dest": "/style.css"
